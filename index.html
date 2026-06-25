@@ -1,329 +1,227 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>9.A | ZŠ Korunovační</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Závěrečný projekt 9. třídy</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-<style>
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
-}
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      scroll-behavior: smooth;
+    }
 
-html{
-    scroll-behavior:smooth;
-}
+    /* jemné fade-in animace */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s ease;
+    }
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-body{
-    background:#0f172a;
-    color:white;
-    overflow-x:hidden;
-}
-
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    background:
-    radial-gradient(circle at 20% 20%, rgba(59,130,246,.15), transparent 30%),
-    radial-gradient(circle at 80% 10%, rgba(139,92,246,.15), transparent 30%),
-    radial-gradient(circle at 50% 80%, rgba(34,197,94,.1), transparent 30%);
-    z-index:-1;
-}
-
-nav{
-    position:fixed;
-    top:0;
-    width:100%;
-    backdrop-filter:blur(15px);
-    background:rgba(15,23,42,.7);
-    padding:15px 8%;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    z-index:999;
-}
-
-nav .logo{
-    font-weight:800;
-    font-size:1.3rem;
-}
-
-nav ul{
-    display:flex;
-    list-style:none;
-    gap:25px;
-}
-
-nav a{
-    color:white;
-    text-decoration:none;
-    font-weight:500;
-}
-
-.hero{
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    padding:20px;
-}
-
-.hero-content{
-    max-width:900px;
-}
-
-.hero h1{
-    font-size:5rem;
-    background:linear-gradient(90deg,#38bdf8,#8b5cf6);
-    -webkit-background-clip:text;
-    color:transparent;
-}
-
-.hero p{
-    margin-top:20px;
-    font-size:1.2rem;
-    color:#cbd5e1;
-}
-
-.btn{
-    margin-top:35px;
-    display:inline-block;
-    padding:15px 35px;
-    border-radius:50px;
-    text-decoration:none;
-    color:white;
-    background:linear-gradient(90deg,#38bdf8,#8b5cf6);
-}
-
-section{
-    padding:100px 10%;
-}
-
-h2{
-    text-align:center;
-    margin-bottom:50px;
-    font-size:2.8rem;
-}
-
-.card{
-    background:rgba(30,41,59,.7);
-    backdrop-filter:blur(15px);
-    border:1px solid rgba(255,255,255,.08);
-    border-radius:25px;
-    padding:30px;
-}
-
-.timeline{
-    display:grid;
-    gap:20px;
-}
-
-.timeline-item{
-    background:#1e293b;
-    padding:20px;
-    border-radius:20px;
-}
-
-.teachers{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
-    gap:25px;
-}
-
-.students{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-    gap:20px;
-}
-
-.student{
-    background:#1e293b;
-    border-radius:20px;
-    padding:15px;
-    text-align:center;
-    transition:.3s;
-}
-
-.student:hover{
-    transform:translateY(-6px);
-}
-
-.video iframe{
-    width:100%;
-    height:500px;
-    border:none;
-    border-radius:25px;
-}
-
-footer{
-    background:#020617;
-    padding:60px 10%;
-    text-align:center;
-}
-
-.socials{
-    margin-top:25px;
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:20px;
-}
-
-.socials a{
-    color:#38bdf8;
-    text-decoration:none;
-    font-weight:600;
-}
-
-.socials a:hover{
-    color:#8b5cf6;
-}
-
-@media(max-width:768px){
-    .hero h1{font-size:3rem;}
-    nav ul{display:none;}
-    .video iframe{height:300px;}
-}
-
-</style>
+    /* glass efekt */
+    .glass {
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(10px);
+    }
+  </style>
 </head>
 
-<body>
+<body class="bg-zinc-950 text-white">
 
-<nav>
-    <div class="logo">9.A • ZŠ Korunovační</div>
-    <ul>
-        <li><a href="#podekovani">Poděkování</a></li>
-        <li><a href="#casova">Cesta</a></li>
-        <li><a href="#vzpominky">Vzpomínky</a></li>
-        <li><a href="#videoklip">Videoklip</a></li>
-        <li><a href="#zaci">Žáci</a></li>
-    </ul>
-</nav>
+<!-- NAVBAR -->
+<header class="fixed top-0 w-full z-50 glass border-b border-white/10">
+  <div class="max-w-6xl mx-auto flex justify-between items-center p-4">
+    <h1 class="font-bold">9. třída</h1>
+    <nav class="space-x-4 text-sm">
+      <a href="#o-tride" class="hover:text-blue-400">O třídě</a>
+      <a href="#galerie" class="hover:text-blue-400">Galerie</a>
+      <a href="#video" class="hover:text-blue-400">Video</a>
+      <a href="#zaci" class="hover:text-blue-400">Žáci</a>
+    </nav>
+  </div>
+</header>
 
-<section class="hero">
-    <div class="hero-content">
-        <h1>9.A 2026</h1>
-        <p>Devět let společné cesty, které končí jedním velkým příběhem.</p>
-        <a href="#podekovani" class="btn">Vstoupit</a>
-    </div>
+<!-- HERO -->
+<section class="h-screen flex items-center justify-center text-center px-6 bg-gradient-to-b from-black via-zinc-900 to-black">
+  <div>
+    <h1 class="text-4xl md:text-6xl font-extrabold reveal">Závěrečný projekt 9. třídy</h1>
+    <p class="mt-4 text-lg text-zinc-300 reveal">Naše třída • naše vzpomínky • náš příběh</p>
+  </div>
 </section>
 
-<section id="podekovani">
-    <h2>Poděkování</h2>
-    <div class="card">
-        <p>
-            Děkujeme všem učitelům, vedení školy i zaměstnancům ZŠ Korunovační
-            za trpělivost, podporu a vše, co nás naučili.
-        </p>
-        <br>
-        <p>
-            Odnášíme si vzpomínky, přátelství a zážitky na celý život.
-        </p>
-        <br>
-        <strong>Vaši žáci ❤️</strong>
-    </div>
+<!-- O TŘÍDĚ -->
+<section id="o-tride" class="max-w-5xl mx-auto py-20 px-6">
+  <h2 class="text-3xl font-bold mb-6 reveal">O třídě</h2>
+  <p class="text-zinc-300 reveal">
+    Jsme třída základní školy, která začala své studium v roce 2017 a končí v roce 2026.
+    Během let jsme zažili spoustu projektů, výletů, úspěchů i nezapomenutelných momentů.
+  </p>
 </section>
 
-<section id="casova">
-    <h2>Naše cesta</h2>
-    <div class="timeline">
-        <div class="timeline-item">1. třída – první krok do školy</div>
-        <div class="timeline-item">3. třída – první výlety</div>
-        <div class="timeline-item">5. třída – nové předměty</div>
-        <div class="timeline-item">7. třída – společné zážitky</div>
-        <div class="timeline-item">9. třída – konec jedné éry</div>
-        <div class="timeline-item">Třídní učitelka – Růženka Pašková</div>
-    </div>
+<!-- GALERIE -->
+<section id="galerie" class="max-w-6xl mx-auto py-20 px-6">
+  <h2 class="text-3xl font-bold mb-10 reveal">Galerie</h2>
+
+  <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+    <div class="h-40 bg-zinc-800 rounded-xl reveal"></div>
+    <div class="h-40 bg-zinc-800 rounded-xl reveal"></div>
+    <div class="h-40 bg-zinc-800 rounded-xl reveal"></div>
+    <div class="h-40 bg-zinc-800 rounded-xl reveal"></div>
+    <div class="h-40 bg-zinc-800 rounded-xl reveal"></div>
+    <div class="h-40 bg-zinc-800 rounded-xl reveal"></div>
+  </div>
 </section>
 
-<section id="vzpominky">
-    <h2>Vzpomínkové video</h2>
+<!-- DOKUMENTÁRNÍ VIDEO -->
+<section class="py-20 bg-zinc-900">
+  <div class="max-w-6xl mx-auto px-6">
 
-    <div class="teachers">
-        <div class="card">
-            <h3>Naše vzpomínky</h3>
-            <br>
-            <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe>
-        </div>
-    </div>
-</section>
-    
-<section id="klip">
-    <h2>Vzpomínkové video</h2>
+    <h2 class="text-3xl font-bold mb-6 reveal">
+      Dokumentární video
+    </h2>
 
-    <div class="teachers">
-        <div class="card">
-            <h3>Naše vzpomínky</h3>
-            <br>
-            <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe>
-        </div>
+    <p class="text-zinc-300 mb-8 reveal">
+      Krátký dokument zachycující naše roky na základní škole,
+      důležité události, školní výlety, projekty a vzpomínky,
+      které si odnášíme do další životní etapy.
+    </p>
+
+    <div class="aspect-video rounded-2xl overflow-hidden shadow-2xl reveal">
+      <video controls class="w-full h-full">
+        <source src="dokumentarni-video.mp4" type="video/mp4">
+        Váš prohlížeč nepodporuje přehrávání videa.
+      </video>
     </div>
-</section>
-    
-<section id="videoklip">
-    <h2>Závěrečný videoklip</h2>
-    <div class="video">
-        <iframe src="https://www.youtube.com/embed/VIDEO_KLIP" allowfullscreen></iframe>
-    </div>
+
+  </div>
 </section>
 
-<section id="zaci">
-    <h2>Naši žáci</h2>
+<!-- HLAVNÍ VIDEO -->
+<section id="video" class="py-20">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="text-3xl font-bold mb-6 reveal">Vzpomínkové video</h2>
 
-    <div class="students">
-
-        <div class="student">Václav Čečelovský</div>
-        <div class="student">Nikolas Dušek</div>
-        <div class="student">Isabelle Grünová</div>
-        <div class="student">Stela Hájíčková</div>
-        <div class="student">Viktorie Hájíčková</div>
-        <div class="student">Karolína Chalupová</div>
-        <div class="student">Adam Chládek</div>
-        <div class="student">Šimon Chládek</div>
-        <div class="student">Pavel Jablonský</div>
-        <div class="student">Mariana Jančarová</div>
-
-        <div class="student">Tom Janke</div>
-        <div class="student">Matyáš Javůrek</div>
-        <div class="student">Tomáš Javůrek</div>
-        <div class="student">Oskar Kubíček</div>
-        <div class="student">Matěj Kýhos</div>
-        <div class="student">Nika Lichterman</div>
-        <div class="student">Ema Mína Mátlová</div>
-        <div class="student">Maksym Molodyrenko</div>
-        <div class="student">Aya Nafati</div>
-        <div class="student">Bohdan Priadko</div>
-        <div class="student">Tetiana Shtoda</div>
-        <div class="student">Emílie Šantúrová</div>
-        <div class="student">Elisabeth Lindsey Textorová</div>
-        <div class="student">Barbora Voláková</div>
-        <div class="student">Rozálie Zemánková</div>
-        <div class="student">Albert Zůbek</div>
-
+    <div class="aspect-video w-full rounded-2xl overflow-hidden shadow-2xl reveal">
+      <iframe
+        class="w-full h-full"
+        src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+        title="Video"
+        allowfullscreen>
+      </iframe>
     </div>
+
+    <p class="text-zinc-400 mt-4 reveal">
+      Naše společné vzpomínky zachycené v jednom videu.
+    </p>
+  </div>
 </section>
 
-<footer>
-    <h2>ZŠ Korunovační</h2>
-    <p>Absolventský web 9.A</p>
+<!-- VIDEO KLIP -->
+<section class="py-20 bg-zinc-900">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="text-3xl font-bold mb-6 reveal">Videoklip třídy</h2>
 
-    <div class="socials">
-        <a href="https://www.korunka.org/">Web školy</a>
-        <a href="https://www.instagram.com/zskorunovacni_official/">Instagram školy</a>
-        <a href="https://www.youtube.com/@zskorunovacni.official">YouTube školy</a>
+    <div class="aspect-video rounded-2xl overflow-hidden reveal">
+      <video controls class="w-full h-full">
+        <source src="video.mp4" type="video/mp4">
+        Váš prohlížeč nepodporuje video.
+      </video>
     </div>
 
-    <p style="margin-top:25px;">© 2026 9.A</p>
+    <p class="text-zinc-400 mt-4 reveal">
+      Krátký sestřih našeho školního života.
+    </p>
+  </div>
+</section>
+
+<!-- ŽÁCI -->
+<section id="zaci" class="py-20 px-6 max-w-6xl mx-auto">
+  <h2 class="text-3xl font-bold mb-10 reveal">Žáci třídy</h2>
+
+  <div class="grid md:grid-cols-3 gap-6">
+      
+<!-- TŘÍDNÍ UČITELKA -->
+<div class="p-6 rounded-2xl bg-gradient-to-br from-blue-600/20 to-cyan-600/20 border border-blue-500/30 hover:scale-105 transition duration-300 reveal">
+
+  <div class="flex items-center justify-between mb-3">
+    <h3 class="text-xl font-semibold">
+      Mgr. Jana Nováková
+    </h3>
+
+    <span class="text-xs px-3 py-1 rounded-full bg-blue-500/20 text-blue-300">
+      Třídní učitelka
+    </span>
+  </div>
+
+  <p class="text-zinc-300 text-sm">
+    Naše třídní učitelka, která nás provázela během školních let.
+  </p>
+
+  <a
+    href="https://instagram.com/ucitelka"
+    target="_blank"
+    class="inline-flex items-center gap-2 mt-4 text-pink-400 hover:text-pink-300 transition"
+  >
+    📷 Instagram
+  </a>
+
+</div>
+      
+    <!-- karta -->
+   <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <h3 class="text-xl font-semibold">Jan Novák</h3>
+      <p class="text-zinc-400 text-sm">Třídní fotograf</p>
+      <a href="#" class="text-blue-400 text-sm mt-2 inline-block">Instagram</a>
+    </div>
+
+    <div class="p-6 rounded-2xl bg-zinc-900 hover:bg-zinc-800 transition reveal">
+      <h3 class="text-xl font-semibold">Petr Svoboda</h3>
+      <p class="text-zinc-400 text-sm">IT nadšenec</p>
+      <a href="#" class="text-blue-400 text-sm mt-2 inline-block">Instagram</a>
+    </div>
+
+    <div class="p-6 rounded-2xl bg-zinc-900 hover:bg-zinc-800 transition reveal">
+      <h3 class="text-xl font-semibold">Jakub Dvořák</h3>
+      <p class="text-zinc-400 text-sm">Sportovní reprezentant</p>
+      <a href="#" class="text-blue-400 text-sm mt-2 inline-block">Instagram</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="py-10 text-center text-zinc-500 border-t border-white/10">
+  © 2026 9. třída – závěrečný projekt
 </footer>
+
+<!-- ANIMACE -->
+<script>
+  const elements = document.querySelectorAll('.reveal');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+      }
+    });
+  }, {
+    threshold: 0.1
+  });
+
+  elements.forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>
