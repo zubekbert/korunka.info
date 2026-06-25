@@ -77,24 +77,25 @@
 
   <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
 
-    <img src="images/1.jpg"
-         class="rounded-xl h-40 w-full object-cover hover:scale-105 transition duration-300 reveal">
+    <img src="images/1.jpg" onclick="openLightbox(this.src)"
+         class="rounded-xl h-40 w-full object-cover cursor-pointer hover:scale-105 transition">
 
-    <img src="images/2.jpg"
-         class="rounded-xl h-40 w-full object-cover hover:scale-105 transition duration-300 reveal">
+    <img src="images/2.jpg" onclick="openLightbox(this.src)"
+         class="rounded-xl h-40 w-full object-cover cursor-pointer hover:scale-105 transition">
 
-    <img src="images/3.jpg"
-         class="rounded-xl h-40 w-full object-cover hover:scale-105 transition duration-300 reveal">
+    <img src="images/3.jpg" onclick="openLightbox(this.src)"
+         class="rounded-xl h-40 w-full object-cover cursor-pointer hover:scale-105 transition">
 
-    <img src="images/4.jpg"
-         class="rounded-xl h-40 w-full object-cover hover:scale-105 transition duration-300 reveal">
+    <img src="images/4.jpg" onclick="openLightbox(this.src)"
+         class="rounded-xl h-40 w-full object-cover cursor-pointer hover:scale-105 transition">
 
-    <img src="images/5.jpg"
-         class="rounded-xl h-40 w-full object-cover hover:scale-105 transition duration-300 reveal">
+    <img src="images/5.jpg" onclick="openLightbox(this.src)"
+         class="rounded-xl h-40 w-full object-cover cursor-pointer hover:scale-105 transition">
 
-    <img src="images/6.jpg"
-         class="rounded-xl h-40 w-full object-cover hover:scale-105 transition duration-300 reveal">
+    <img src="images/6.jpg" onclick="openLightbox(this.src)"
+         class="rounded-xl h-40 w-full object-cover cursor-pointer hover:scale-105 transition">
 
+    
   </div>
 
 </section>
@@ -402,6 +403,33 @@
 
   elements.forEach(el => observer.observe(el));
 </script>
+  
+<!-- LIGHTBOX -->
+<div id="lightbox"
+     class="fixed inset-0 bg-black/90 hidden items-center justify-center z-50"
+     onclick="closeLightbox()">
 
+  <img id="lightbox-img"
+       class="max-w-[90%] max-h-[90%] rounded-xl shadow-2xl">
+
+</div>
+    <script>
+  function openLightbox(src) {
+    const box = document.getElementById("lightbox");
+    const img = document.getElementById("lightbox-img");
+
+    img.src = src;
+    box.classList.remove("hidden");
+    box.classList.add("flex");
+  }
+
+  function closeLightbox() {
+    const box = document.getElementById("lightbox");
+
+    box.classList.add("hidden");
+    box.classList.remove("flex");
+  }
+</script>
+  
 </body>
 </html>
