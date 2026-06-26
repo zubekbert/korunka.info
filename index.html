@@ -387,140 +387,48 @@
 
 </footer>
 
+<!-- ANIMACE -->
+<script>
+  const elements = document.querySelectorAll('.reveal');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+      }
+    });
+  }, {
+    threshold: 0.1
+  });
+
+  elements.forEach(el => observer.observe(el));
+</script>
+  
 <!-- LIGHTBOX -->
 <div id="lightbox"
-     class="fixed inset-0 bg-black/90 hidden items-center justify-center z-50">
-
-  <!-- Zavřít -->
-  <button onclick="closeLightbox()"
-          class="absolute top-5 right-6 text-white text-5xl z-50">
-    &times;
-  </button>
-
-  <!-- šipky (jen PC) -->
-  <button id="prevBtn"
-          onclick="prevImage()"
-          class="hidden md:block absolute left-6 text-white text-6xl">
-    &#10094;
-  </button>
-
-  <button id="nextBtn"
-          onclick="nextImage()"
-          class="hidden md:block absolute right-6 text-white text-6xl">
-    &#10095;
-  </button>
+     class="fixed inset-0 bg-black/90 hidden items-center justify-center z-50"
+     onclick="closeLightbox()">
 
   <img id="lightbox-img"
        class="max-w-[90%] max-h-[90%] rounded-xl shadow-2xl">
 
 </div>
-  
-  <script>
+    <script>
+  function openLightbox(src) {
+    const box = document.getElementById("lightbox");
+    const img = document.getElementById("lightbox-img");
 
-let images = [];
-let currentIndex = 0;
+    img.src = src;
+    box.classList.remove("hidden");
+    box.classList.add("flex");
+  }
 
-const lightbox = document.getElementById("lightbox");
-const lightboxImg = document.getElementById("lightbox-img");
+  function closeLightbox() {
+    const box = document.getElementById("lightbox");
 
-const prevBtn = document.getElementById("prevBtn");
-const nextBtn = document.getElementById("nextBtn");
-
-/* načtení galerie */
-function getImages(){
-    return Array.from(document.querySelectorAll("#galerie img"));
-}
-
-/* OTEVŘENÍ */
-function openLightbox(src){
-
-    images = getImages();
-
-    currentIndex = images.findIndex(img => img.src === src);
-
-    lightboxImg.src = src;
-
-    lightbox.classList.remove("hidden");
-    lightbox.classList.add("flex");
-
-    updateButtons();
-}
-
-/* ZAVŘENÍ */
-function closeLightbox(){
-    lightbox.classList.add("hidden");
-    lightbox.classList.remove("flex");
-}
-
-/* DALŠÍ */
-function nextImage(){
-
-    if(currentIndex >= images.length - 1) return;
-
-    currentIndex++;
-
-    lightboxImg.src = images[currentIndex].src;
-
-    updateButtons();
-}
-
-/* PŘEDCHOZÍ */
-function prevImage(){
-
-    if(currentIndex <= 0) return;
-
-    currentIndex--;
-
-    lightboxImg.src = images[currentIndex].src;
-
-    updateButtons();
-}
-
-/* šipky viditelnost */
-function updateButtons(){
-
-    if(!prevBtn || !nextBtn) return;
-
-    prevBtn.style.display = (currentIndex === 0) ? "none" : "block";
-    nextBtn.style.display = (currentIndex === images.length - 1) ? "none" : "block";
-}
-
-/* KLÁVESY */
-document.addEventListener("keydown", (e) => {
-
-    if(lightbox.classList.contains("hidden")) return;
-
-    if(e.key === "ArrowRight") nextImage();
-
-    if(e.key === "ArrowLeft") prevImage();
-
-    if(e.key === "Escape") closeLightbox();
-
-});
-
-/* SWIPE MOBIL */
-let startX = 0;
-
-lightbox.addEventListener("touchstart", e => {
-    startX = e.touches[0].clientX;
-});
-
-lightbox.addEventListener("touchend", e => {
-
-    let endX = e.changedTouches[0].clientX;
-
-    let diff = startX - endX;
-
-    if(diff > 50) nextImage();
-    if(diff < -50) prevImage();
-
-});
-
-/* klik mimo */
-lightbox.addEventListener("click", e => {
-    if(e.target === lightbox) closeLightbox();
-});
-
+    box.classList.add("hidden");
+    box.classList.remove("flex");
+  }
 </script>
   
 </body>
