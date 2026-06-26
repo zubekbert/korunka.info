@@ -387,26 +387,38 @@
 
 </footer>
 
-<!-- ANIMACE -->
-<script>
-  const elements = document.querySelectorAll('.reveal');
+<!-- LIGHTBOX -->
+<div id="lightbox"
+     class="fixed inset-0 bg-black/90 hidden items-center justify-center z-50">
 
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('show');
-      }
-    });
-  }, {
-    threshold: 0.1
-  });
+  <!-- Zavřít -->
+  <button onclick="closeLightbox()"
+          class="absolute top-5 right-6 text-white text-5xl z-50">
+    &times;
+  </button>
 
-  elements.forEach(el => observer.observe(el));
-</script>
+  <!-- šipky (jen PC) -->
+  <button id="prevBtn"
+          onclick="prevImage()"
+          class="hidden md:block absolute left-6 text-white text-6xl">
+    &#10094;
+  </button>
+
+  <button id="nextBtn"
+          onclick="nextImage()"
+          class="hidden md:block absolute right-6 text-white text-6xl">
+    &#10095;
+  </button>
+
+  <img id="lightbox-img"
+       class="max-w-[90%] max-h-[90%] rounded-xl shadow-2xl">
+
+</div>
   
-<script>
+  <script>
 
-const gallery = Array.from(document.querySelectorAll("#galerie img"));
+let images = [];
+let currentIndex = 0;
 
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightbox-img");
@@ -414,11 +426,17 @@ const lightboxImg = document.getElementById("lightbox-img");
 const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
 
-let currentIndex = 0;
+/* spustí se až po načtení stránky */
+window.onload = () => {
+    images = Array.from(document.querySelectorAll("#galerie img"));
+};
 
+/* OTEVŘENÍ */
 function openLightbox(src){
 
-    currentIndex = gallery.findIndex(img => img.src === src);
+    images = Array.from(document.querySelectorAll("#galerie img"));
+
+    currentIndex = images.findIndex(img => img.src === src);
 
     lightboxImg.src = src;
 
@@ -428,45 +446,47 @@ function openLightbox(src){
     updateButtons();
 }
 
+/* ZAVŘENÍ */
 function closeLightbox(){
-
     lightbox.classList.add("hidden");
     lightbox.classList.remove("flex");
-
 }
 
+/* DALŠÍ */
 function nextImage(){
 
-    if(currentIndex >= gallery.length - 1) return;
+    if(currentIndex >= images.length - 1) return;
 
     currentIndex++;
 
-    lightboxImg.src = gallery[currentIndex].src;
+    lightboxImg.src = images[currentIndex].src;
 
     updateButtons();
 }
 
+/* PŘEDCHOZÍ */
 function prevImage(){
 
     if(currentIndex <= 0) return;
 
     currentIndex--;
 
-    lightboxImg.src = gallery[currentIndex].src;
+    lightboxImg.src = images[currentIndex].src;
 
     updateButtons();
 }
 
+/* SCHOVÁNÍ ŠIPEK NA KRAJÍCH */
 function updateButtons(){
 
     if(prevBtn)
         prevBtn.style.display = currentIndex === 0 ? "none" : "block";
 
     if(nextBtn)
-        nextBtn.style.display = currentIndex === gallery.length - 1 ? "none" : "block";
+        nextBtn.style.display = currentIndex === images.length - 1 ? "none" : "block";
 }
 
-/* KLÁVESNICE */
+/* KLÁVESY */
 document.addEventListener("keydown", (e) => {
 
     if(lightbox.classList.contains("hidden")) return;
@@ -479,27 +499,26 @@ document.addEventListener("keydown", (e) => {
 
 });
 
-/* SWIPE NA MOBILU */
+/* SWIPE MOBIL */
 let startX = 0;
 
-lightbox.addEventListener("touchstart", (e) => {
-    startX = e.changedTouches[0].clientX;
+lightbox.addEventListener("touchstart", e => {
+    startX = e.touches[0].clientX;
 });
 
-lightbox.addEventListener("touchend", (e) => {
+lightbox.addEventListener("touchend", e => {
 
-    const endX = e.changedTouches[0].clientX;
+    let endX = e.changedTouches[0].clientX;
 
-    const diff = startX - endX;
+    let diff = startX - endX;
 
     if(diff > 50) nextImage();
-
     if(diff < -50) prevImage();
 
 });
 
-/* klik mimo obraz */
-lightbox.addEventListener("click", (e) => {
+/* klik mimo */
+lightbox.addEventListener("click", e => {
     if(e.target === lightbox) closeLightbox();
 });
 
