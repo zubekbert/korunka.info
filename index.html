@@ -426,15 +426,15 @@ const lightboxImg = document.getElementById("lightbox-img");
 const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
 
-/* spustí se až po načtení stránky */
-window.onload = () => {
-    images = Array.from(document.querySelectorAll("#galerie img"));
-};
+/* načtení galerie */
+function getImages(){
+    return Array.from(document.querySelectorAll("#galerie img"));
+}
 
 /* OTEVŘENÍ */
 function openLightbox(src){
 
-    images = Array.from(document.querySelectorAll("#galerie img"));
+    images = getImages();
 
     currentIndex = images.findIndex(img => img.src === src);
 
@@ -476,14 +476,13 @@ function prevImage(){
     updateButtons();
 }
 
-/* SCHOVÁNÍ ŠIPEK NA KRAJÍCH */
+/* šipky viditelnost */
 function updateButtons(){
 
-    if(prevBtn)
-        prevBtn.style.display = currentIndex === 0 ? "none" : "block";
+    if(!prevBtn || !nextBtn) return;
 
-    if(nextBtn)
-        nextBtn.style.display = currentIndex === images.length - 1 ? "none" : "block";
+    prevBtn.style.display = (currentIndex === 0) ? "none" : "block";
+    nextBtn.style.display = (currentIndex === images.length - 1) ? "none" : "block";
 }
 
 /* KLÁVESY */
