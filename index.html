@@ -405,42 +405,136 @@
 </script>
   
 <!-- LIGHTBOX -->
-<div id="lightbox" class="hidden fixed inset-0 z-50 bg-black/95 flex items-center justify-center">
+<div id="lightbox"
+     class="fixed inset-0 bg-black/90 hidden items-center justify-center z-50">
 
-    <button id="closeBtn"
-        class="absolute top-6 right-6 text-white text-5xl">&times;</button>
+  <!-- Zavřít -->
+  <button onclick="closeLightbox()"
+          class="absolute top-5 right-6 text-white text-5xl hover:text-zinc-300 z-50">
+    &times;
+  </button>
 
-    <button id="prevBtn"
-        class="absolute left-6 text-white text-5xl">&#10094;</button>
+  <!-- Levá šipka -->
+  <button onclick="prevImage()"
+          class="absolute left-4 md:left-8 text-white text-6xl hover:text-zinc-300 z-50">
+    &#10094;
+  </button>
 
-    <img id="lightbox-img"
-         class="max-w-[90vw] max-h-[90vh] rounded-xl">
+  <!-- Obrázek -->
+  <img id="lightbox-img"
+       class="max-w-[90%] max-h-[90%] rounded-xl shadow-2xl select-none">
 
-    <button id="nextBtn"
-        class="absolute right-6 text-white text-5xl">&#10095;</button>
+  <!-- Pravá šipka -->
+  <button onclick="nextImage()"
+          class="absolute right-4 md:right-8 text-white text-6xl hover:text-zinc-300 z-50">
+    &#10095;
+  </button>
 
 </div>
   
-    <script>
+<script>
+
+const gallery = Array.from(document.querySelectorAll("#galerie img"));
+
+let currentIndex = 0;
+
+function openLightbox(src){
+
+    currentIndex = gallery.findIndex(img => img.src === src);
+
+    document.getElementById("lightbox-img").src = src;
+
+    const box = document.getElementById("lightbox");
+
+    box.classList.remove("hidden");
+    box.classList.add("flex");
+
+}
+
+function closeLightbox(){
+
+    const box = document.getElementById("lightbox");
+
+    box.classList.add("hidden");
+    box.classList.remove("flex");
+
+}
+
+function nextImage(){
+
+    currentIndex++;
+
+    if(currentIndex >= gallery.length)
+        currentIndex = 0;
+
+    document.getElementById("lightbox-img").src =
+        gallery[currentIndex].src;
+
+}
+
+function prevImage(){
+
+    currentIndex--;
+
+    if(currentIndex < 0)
+        currentIndex = gallery.length-1;
+
+    document.getElementById("lightbox-img").src =
+        gallery[currentIndex].src;
+
+}
+
+// Klávesnice
+
+document.addEventListener("keydown",e=>{
+
+    const box=document.getElementById("lightbox");
+
+    if(box.classList.contains("hidden")) return;
+
+    if(e.key==="ArrowRight") nextImage();
+
+    if(e.key==="ArrowLeft") prevImage();
+
+    if(e.key==="Escape") closeLightbox();
+
 });
+
+
+// Swipe na mobilu
 
 let startX=0;
 
-lightbox.addEventListener("touchstart",(e)=>{
+const box=document.getElementById("lightbox");
+
+box.addEventListener("touchstart",e=>{
+
     startX=e.changedTouches[0].clientX;
-});
-
-lightbox.addEventListener("touchend",(e)=>{
-
-    let endX=e.changedTouches[0].clientX;
-
-    if(startX-endX>60)
-        nextBtn.click();
-
-    if(endX-startX>60)
-        prevBtn.click();
 
 });
+
+box.addEventListener("touchend",e=>{
+
+    const endX=e.changedTouches[0].clientX;
+
+    if(startX-endX>50)
+        nextImage();
+
+    if(endX-startX>50)
+        prevImage();
+
+});
+
+
+// Zavření kliknutím mimo fotku
+
+box.addEventListener("click",e=>{
+
+    if(e.target===box)
+        closeLightbox();
+
+});
+
 </script>
   
 </body>
