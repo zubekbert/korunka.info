@@ -1,420 +1,143 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#09090b">
+  <meta name="description" content="Závěrečný projekt 9. třídy ZŠ Korunovační. Naše společné vzpomínky, fotografie, dokumentární video a hudební klip.">
   <title>Závěrečný projekt 9. třídy</title>
-
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Google Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      scroll-behavior: smooth;
-    }
-
-    /* jemné fade-in animace */
-    .reveal {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.8s ease;
-    }
-    .reveal.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* glass efekt */
-    .glass {
-      background: rgba(255,255,255,0.08);
-      backdrop-filter: blur(10px);
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
 </head>
-
-<body class="bg-zinc-950 text-white">
-
-<!-- NAVBAR -->
-<header class="fixed top-0 w-full z-50 glass border-b border-white/10">
-  <div class="max-w-6xl mx-auto flex justify-between items-center p-4">
-    <h1 class="font-bold">9. třída</h1>
-    <nav class="space-x-4 text-sm">
-      <a href="#o-tride" class="hover:text-blue-400">O třídě</a>
-      <a href="#galerie" class="hover:text-blue-400">Galerie</a>
-      <a href="#rozhovor" class="hover:text-blue-400">Rozhovor</a>
-      <a href="#zaci" class="hover:text-blue-400">Žáci</a>
-    </nav>
-  </div>
-</header>
-
-<!-- HERO -->
-<section class="h-screen flex items-center justify-center text-center px-6 bg-gradient-to-b from-black via-zinc-900 to-black">
-  <div>
-    <h1 class="text-4xl md:text-6xl font-extrabold reveal">Závěrečný projekt 9. třídy</h1>
-    <p class="mt-4 text-lg text-zinc-300 reveal">Naše třída • naše vzpomínky • náš příběh</p>
-  </div>
-</section>
-
-<!-- O TŘÍDĚ -->
-<section id="o-tride" class="max-w-5xl mx-auto py-20 px-6">
-  <h2 class="text-3xl font-bold mb-6 reveal">O třídě</h2>
-  <p class="text-zinc-300 reveal">
-    Jsme třída základní školy Korunovační, která začala své studium v roce 2017 a končí v roce 2026.
-    Během let jsme zažili spoustu projektů, výletů, úspěchů i nezapomenutelných momentů.
-  </p>
-</section>
-
-<!-- GALERIE -->
-<section id="galerie" class="max-w-6xl mx-auto py-20 px-6">
-
-  <h2 class="text-3xl font-bold mb-10 reveal">Galerie</h2>
-
-  <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-
-    <img src="images/1.jpg" onclick="openLightbox(this.src)"
-         class="rounded-xl h-40 w-full object-cover cursor-pointer hover:scale-105 transition">
-
-    <img src="images/2.jpg" onclick="openLightbox(this.src)"
-         class="rounded-xl h-40 w-full object-cover cursor-pointer hover:scale-105 transition">
-
-    <img src="images/3.jpg" onclick="openLightbox(this.src)"
-         class="rounded-xl h-40 w-full object-cover cursor-pointer hover:scale-105 transition">
-
-    <img src="images/4.jpg" onclick="openLightbox(this.src)"
-         class="rounded-xl h-40 w-full object-cover cursor-pointer hover:scale-105 transition">
-
-    <img src="images/5.jpg" onclick="openLightbox(this.src)"
-         class="rounded-xl h-40 w-full object-cover cursor-pointer hover:scale-105 transition">
-
-    <img src="images/6.jpg" onclick="openLightbox(this.src)"
-         class="rounded-xl h-40 w-full object-cover cursor-pointer hover:scale-105 transition">
-
-    
-  </div>
-
-</section>
-
-<!-- DOKUMENTÁRNÍ VIDEO -->
-<section id="rozhovor" class="py-20 bg-zinc-900 scroll-mt-16">
-
-  <div class="max-w-6xl mx-auto px-6">
-
-    <h2 class="text-3xl font-bold mb-6 reveal">Dokumentární video</h2>
-
-    <p class="text-zinc-300 mb-10 reveal">
-      Tento dokument zachycuje naši třídu z pohledu učitelů. Prostřednictvím rozhovorů s pedagogy vzpomínáme na společně strávené roky, školní zážitky, úspěchy i nezapomenutelné okamžiky.
-      Cílem filmu je ukázat, jak naši třídu vnímali ti, kteří nás po celou dobu provázeli, a vytvořit trvalou vzpomínku na závěr našeho působení na ZŠ Korunovační.
-    </p>
-
-    <!-- VIDEO STEJNÉ JAKO OSTATNÍ -->
-    <div class="aspect-video w-full rounded-2xl overflow-hidden shadow-2xl reveal">
-
-      <iframe
-        class="w-full h-full"
-        src="https://www.youtube.com/embed/dUMbdHJ4YiU"
-        allowfullscreen>
-      </iframe>
-
+<body>
+  <a class="skip-link" href="#obsah">Přeskočit na obsah</a>
+  <header class="site-header">
+    <div class="nav-inner container">
+      <a class="brand" href="#uvod">9. třída</a>
+      <nav aria-label="Hlavní navigace">
+        <a href="#o-tride">O třídě</a>
+        <a href="#galerie">Galerie</a>
+        <a href="#rozhovor">Rozhovor</a>
+        <a href="#zaci">Žáci</a>
+      </nav>
     </div>
+  </header>
 
-  </div>
-
-</section>
-  
-<!-- HUDEBNÍ KLIP -->
-<section class="py-20 px-6 max-w-6xl mx-auto">
-
-  <h2 class="text-3xl font-bold mb-6 reveal">Hudební klip třídy</h2>
-
-  <p class="text-zinc-300 mb-8 reveal">
-    Hudební klip, který jsme natočili společně s paní učitelkou
-    Mgr. Simonou Plottovou.
-  </p>
-
-  <div class="aspect-video rounded-2xl overflow-hidden shadow-2xl reveal">
-    <iframe
-      class="w-full h-full"
-      src="https://www.youtube.com/embed/933oZSDZcDY"
-      allowfullscreen>
-    </iframe>
-  </div>
-
-</section>
-
-<!-- TŘÍDA (UČITELKA + ŽÁCI) -->
-<section id="zaci" class="py-20 px-6 max-w-6xl mx-auto">
-
-  <h2 class="text-3xl font-bold mb-10 reveal">Naše třída</h2>
-
-  <!-- SPOLEČNÝ KONTEJNER -->
-  <div class="bg-zinc-900/40 border border-white/10 rounded-3xl p-6 md:p-10">
-
-    <!-- TŘÍDNÍ UČITELKA -->
-    <div class="flex justify-center mb-10 reveal">
-
-      <div class="w-full md:w-1/2 lg:w-1/3 p-6 rounded-2xl bg-gradient-to-br from-blue-600/20 to-cyan-600/20 border border-blue-500/30 text-center hover:scale-105 transition">
-
-        <h3 class="text-xl font-semibold mb-2">
-          Mgr. Růžena Pašková
-        </h3>
-
-        <p class="text-zinc-300 text-sm mb-4">
-          Naše milovaná třídní učitelka, která nás provázela druhým stupněm základní školy.
-        </p>
-
-        <a href="https://www.instagram.com/ruzenkapaskova/"
-           target="_blank"
-           class="text-pink-400 hover:text-pink-300 transition">
-          Instagram
-        </a>
-
+  <main id="obsah" tabindex="-1">
+    <section id="uvod" class="hero" aria-labelledby="hero-title">
+      <div class="hero-content">
+        <h1 id="hero-title">Závěrečný projekt 9. třídy</h1>
+        <p>Naše třída • naše vzpomínky • náš příběh</p>
       </div>
+    </section>
+
+    <section id="o-tride" class="section container container-narrow" aria-labelledby="about-title">
+      <h2 id="about-title">O třídě</h2>
+      <p class="section-copy">Jsme třída základní školy Korunovační, která začala své studium v roce 2017 a končí v roce 2026.
+        Během let jsme zažili spoustu projektů, výletů, úspěchů i nezapomenutelných momentů.</p>
+    </section>
+
+    <section id="galerie" class="section container" aria-labelledby="gallery-title">
+      <h2 id="gallery-title">Galerie</h2>
+      <div class="gallery-grid"><a class="gallery-item" href="images/1.jpg" data-photo="0" aria-label="Otevřít fotografii 1 z 6">
+  <img src="images/1.jpg" width="2048" height="1536" alt="Fotografie ze života naší třídy 1" loading="lazy" decoding="async">
+  <span class="gallery-error" hidden>Fotografii se nepodařilo načíst. Otevřít znovu.</span>
+</a>
+<a class="gallery-item" href="images/2.jpg" data-photo="1" aria-label="Otevřít fotografii 2 z 6">
+  <img src="images/2.jpg" width="2048" height="1365" alt="Fotografie ze života naší třídy 2" loading="lazy" decoding="async">
+  <span class="gallery-error" hidden>Fotografii se nepodařilo načíst. Otevřít znovu.</span>
+</a>
+<a class="gallery-item" href="images/3.jpg" data-photo="2" aria-label="Otevřít fotografii 3 z 6">
+  <img src="images/3.jpg" width="1600" height="1200" alt="Fotografie ze života naší třídy 3" loading="lazy" decoding="async">
+  <span class="gallery-error" hidden>Fotografii se nepodařilo načíst. Otevřít znovu.</span>
+</a>
+<a class="gallery-item" href="images/4.jpg" data-photo="3" aria-label="Otevřít fotografii 4 z 6">
+  <img src="images/4.jpg" width="2048" height="1536" alt="Fotografie ze života naší třídy 4" loading="lazy" decoding="async">
+  <span class="gallery-error" hidden>Fotografii se nepodařilo načíst. Otevřít znovu.</span>
+</a>
+<a class="gallery-item" href="images/5.jpg" data-photo="4" aria-label="Otevřít fotografii 5 z 6">
+  <img src="images/5.jpg" width="2048" height="1365" alt="Fotografie ze života naší třídy 5" loading="lazy" decoding="async">
+  <span class="gallery-error" hidden>Fotografii se nepodařilo načíst. Otevřít znovu.</span>
+</a>
+<a class="gallery-item" href="images/6.jpg" data-photo="5" aria-label="Otevřít fotografii 6 z 6">
+  <img src="images/6.jpg" width="2048" height="1365" alt="Fotografie ze života naší třídy 6" loading="lazy" decoding="async">
+  <span class="gallery-error" hidden>Fotografii se nepodařilo načíst. Otevřít znovu.</span>
+</a></div>
+    </section>
+
+    <section id="rozhovor" class="section video-section" aria-labelledby="documentary-title">
+      <div class="container">
+        <h2 id="documentary-title">Dokumentární video</h2>
+        <p class="section-copy">Tento dokument zachycuje naši třídu z pohledu učitelů. Prostřednictvím rozhovorů s pedagogy vzpomínáme na společně strávené roky, školní zážitky, úspěchy i nezapomenutelné okamžiky.
+          Cílem filmu je ukázat, jak naši třídu vnímali ti, kteří nás po celou dobu provázeli, a vytvořit trvalou vzpomínku na závěr našeho působení na ZŠ Korunovační.</p>
+        <div class="video-frame">
+          <iframe src="https://www.youtube.com/embed/dUMbdHJ4YiU" title="Dokumentární video naší třídy – rozhovory s učiteli" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container" aria-labelledby="music-title">
+      <h2 id="music-title">Hudební klip třídy</h2>
+      <p class="section-copy">Hudební klip, který jsme natočili společně s paní učitelkou Mgr. Simonou Plottovou.</p>
+      <div class="video-frame">
+        <iframe src="https://www.youtube.com/embed/933oZSDZcDY" title="Hudební klip třídy s paní učitelkou Mgr. Simonou Plottovou" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <section id="zaci" class="section container" aria-labelledby="class-title">
+      <h2 id="class-title">Naše třída</h2>
+      <div class="class-panel">
+        <div class="teacher-card">
+          <h3>Mgr. Růžena Pašková</h3>
+          <p>Naše milovaná třídní učitelka, která nás provázela druhým stupněm základní školy.</p>
+          <a href="https://www.instagram.com/ruzenkapaskova/" target="_blank" rel="noopener noreferrer" aria-label="Instagram – Mgr. Růžena Pašková (nová karta)">Instagram</a>
+        </div>
+        <ul class="student-grid"><li class="student-card"><h3>Václav Čečelovský</h3></li><li class="student-card"><h3>Nikolas Dušek</h3><div class="student-links"><a href="https://www.instagram.com/duseknikolas/" target="_blank" rel="noopener noreferrer" aria-label="Instagram – Nikolas Dušek (nová karta)">Instagram</a></div></li><li class="student-card"><h3>Isabelle Grünová</h3><div class="student-links"><a href="https://www.instagram.com/i._grunova/" target="_blank" rel="noopener noreferrer" aria-label="Instagram – Isabelle Grünová (nová karta)">Instagram</a></div></li><li class="student-card"><h3>Stela Hájíčková</h3></li><li class="student-card"><h3>Viktorie Hájíčková</h3></li><li class="student-card"><h3>Karolína Chalupová</h3><div class="student-links"><a href="https://www.instagram.com/kar0l1nqaa/" target="_blank" rel="noopener noreferrer" aria-label="Instagram – Karolína Chalupová (nová karta)">Instagram</a></div></li><li class="student-card"><h3>Adam Chládek</h3><div class="student-links"><a href="https://www.instagram.com/adam_chladek_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram – Adam Chládek (nová karta)">Instagram</a></div></li><li class="student-card"><h3>Šimon Chládek</h3><div class="student-links"><a href="https://www.instagram.com/simon.chladek/" target="_blank" rel="noopener noreferrer" aria-label="Instagram – Šimon Chládek (nová karta)">Instagram</a></div></li><li class="student-card"><h3>Pavel Jablonský</h3><div class="student-links"><a href="https://www.instagram.com/jablonsky.pavel/" target="_blank" rel="noopener noreferrer" aria-label="Instagram – Pavel Jablonský (nová karta)">Instagram</a></div></li><li class="student-card"><h3>Mariana Jančarová</h3><div class="student-links"><a href="https://www.instagram.com/jancarovamariana/" target="_blank" rel="noopener noreferrer" aria-label="Instagram – Mariana Jančarová (nová karta)">Instagram</a></div></li><li class="student-card"><h3>Tom Janke</h3><div class="student-links"><a href="https://www.instagram.com/tom_.kajdajk/" target="_blank" rel="noopener noreferrer" aria-label="Instagram – Tom Janke (nová karta)">Instagram</a></div></li><li class="student-card"><h3>Matyáš Javůrek</h3><div class="student-links"><a href="https://www.instagram.com/maty_maple/" target="_blank" rel="noopener noreferrer" aria-label="Instagram – Matyáš Javůrek (nová karta)">Instagram</a></div></li><li class="student-card"><h3>Tomáš Javůrek</h3><div class="student-links"><a href="https://www.instagram.com/tomisk0_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram – Tomáš Javůrek (nová karta)">Instagram</a></div></li><li class="student-card"><h3>Oskar Kubíček</h3><div class="student-links"><a href="https://www.instagram.com/everydayoskar/" target="_blank" rel="noopener noreferrer" aria-label="Instagram – Oskar Kubíček (nová karta)">Instagram</a><a href="https://www.instagram.com/predseda.kubicek/" target="_blank" rel="noopener noreferrer" aria-label="Předseda IG – Oskar Kubíček (nová karta)">Předseda IG</a></div></li><li class="student-card"><h3>Matěj Kýhos</h3><div class="student-links"><a href="https://www.instagram.com/mattyseg/" target="_blank" rel="noopener noreferrer" aria-label="Instagram – Matěj Kýhos (nová karta)">Instagram</a></div></li><li class="student-card"><h3>Nika Lichterman</h3><div class="student-links"><a href="https://www.instagram.com/mm00__3/" target="_blank" rel="noopener noreferrer" aria-label="Instagram – Nika Lichterman (nová karta)">Instagram</a></div></li><li class="student-card"><h3>Ema Mína Mátlová</h3><div class="student-links"><a href="https://www.instagram.com/emqwx.x/" target="_blank" rel="noopener noreferrer" aria-label="Instagram – Ema Mína Mátlová (nová karta)">Instagram</a></div></li><li class="student-card"><h3>Maksym Molodyrenko</h3><div class="student-links"><a href="https://www.instagram.com/aymaksymsm69/" target="_blank" rel="noopener noreferrer" aria-label="Instagram – Maksym Molodyrenko (nová karta)">Instagram</a></div></li><li class="student-card"><h3>Aya Nafati</h3><div class="student-links"><a href="https://www.instagram.com/_ayanafati/" target="_blank" rel="noopener noreferrer" aria-label="Instagram – Aya Nafati (nová karta)">Instagram</a></div></li><li class="student-card"><h3>Bohdan Priadko</h3></li><li class="student-card"><h3>Tetiana Shtoda</h3></li><li class="student-card"><h3>Emílie Šantúrová</h3><div class="student-links"><a href="https://www.instagram.com/em1lqx/" target="_blank" rel="noopener noreferrer" aria-label="Instagram – Emílie Šantúrová (nová karta)">Instagram</a></div></li><li class="student-card"><h3>Elisabeth Lindsey Textorová</h3></li><li class="student-card"><h3>Barbora Voláková</h3><div class="student-links"><a href="https://www.instagram.com/volakova_.b/" target="_blank" rel="noopener noreferrer" aria-label="Instagram – Barbora Voláková (nová karta)">Instagram</a></div></li><li class="student-card"><h3>Rozálie Zemánková</h3><div class="student-links"><a href="https://www.instagram.com/zemankova.r/" target="_blank" rel="noopener noreferrer" aria-label="Instagram – Rozálie Zemánková (nová karta)">Instagram</a></div></li><li class="student-card"><h3>Albert Zůbek</h3><div class="student-links"><a href="https://www.instagram.com/albertzubek/" target="_blank" rel="noopener noreferrer" aria-label="Instagram – Albert Zůbek (nová karta)">Instagram</a></div></li></ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 ZŠ Korunovační – závěrečný projekt 9. třídy</p>
+      <div class="social-links">
+        <a href="https://www.korunka.org/" target="_blank" rel="noopener noreferrer" aria-label="Oficiální web školy (nová karta)" title="Oficiální web školy"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c5 5 5 13 0 18-5-5-5-13 0-18Z"/></svg></a>
+        <a href="https://www.instagram.com/zskorunovacni_official/" target="_blank" rel="noopener noreferrer" aria-label="Instagram školy (nová karta)" title="Instagram školy"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg></a>
+        <a href="https://www.youtube.com/@zskorunovacni.official" target="_blank" rel="noopener noreferrer" aria-label="YouTube školy (nová karta)" title="YouTube školy"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="m10 9 5 3-5 3Z"/></svg></a>
+      </div>
+      <p class="site-credit">Web byl vytvořen s pomocí AI.</p>
     </div>
+  </footer>
 
-    <!-- ŽÁCI -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-
-      <div class="p-5 rounded-2xl bg-zinc-900 hover:bg-zinc-800 transition reveal">
-        <h3 class="font-semibold">Václav Čečelovský</h3>
+  <dialog id="lightbox" class="lightbox" aria-labelledby="lightbox-title">
+    <div class="lightbox-shell">
+      <header class="lightbox-toolbar">
+        <h2 id="lightbox-title" class="sr-only">Fotogalerie naší třídy</h2>
+        <p id="lightbox-count" class="photo-count" role="status" aria-live="polite" aria-atomic="true">1 / 6</p>
+        <button id="lightbox-close" class="icon-button" type="button" aria-label="Zavřít galerii" title="Zavřít (Esc)" autofocus><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg></button>
+      </header>
+      <div class="lightbox-stage" id="lightbox-stage" aria-busy="false">
+        <button id="lightbox-prev" class="icon-button lightbox-prev" type="button" aria-label="Předchozí fotografie" title="Předchozí fotografie (←)"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+        <div class="lightbox-image-area">
+          <img id="lightbox-img" alt="" draggable="false" hidden>
+          <div id="lightbox-loading" class="lightbox-loading" role="status" hidden><span class="spinner" aria-hidden="true"></span><span>Načítání fotografie…</span></div>
+          <div id="lightbox-error" class="lightbox-error" role="alert" hidden><p>Fotografii se nepodařilo načíst.</p><button id="lightbox-retry" class="secondary-button" type="button">Zkusit znovu</button></div>
+        </div>
+        <button id="lightbox-next" class="icon-button lightbox-next" type="button" aria-label="Další fotografie" title="Další fotografie (→)"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
       </div>
-
-      <div class="p-5 rounded-2xl bg-zinc-900 hover:bg-zinc-800 transition reveal">
-        <h3 class="font-semibold">Nikolas Dušek</h3>
-        <a href="https://www.instagram.com/duseknikolas/" target="_blank" class="text-pink-400 hover:text-pink-300 transition">Instagram</a>
-      </div>
-
-      <div class="p-5 rounded-2xl bg-zinc-900 hover:bg-zinc-800 transition reveal">
-        <h3 class="font-semibold">Isabelle Grünová</h3>
-        <a href="https://www.instagram.com/i._grunova/" target="_blank" class="text-pink-400 hover:text-pink-300 transition">Instagram</a>
-      </div>
-
-      <div class="p-5 rounded-2xl bg-zinc-900 hover:bg-zinc-800 transition reveal">
-        <h3 class="font-semibold">Stela Hájíčková</h3>
-      </div>
-
-      <div class="p-5 rounded-2xl bg-zinc-900 hover:bg-zinc-800 transition reveal">
-        <h3 class="font-semibold">Viktorie Hájíčková</h3>
-      </div>
-
-      <div class="p-5 rounded-2xl bg-zinc-900 hover:bg-zinc-800 transition reveal">
-        <h3 class="font-semibold">Karolína Chalupová</h3>
-        <a href="https://www.instagram.com/kar0l1nqaa/" target="_blank" class="text-pink-400 hover:text-pink-300 transition">Instagram</a>
-      </div>
-
-      <div class="p-5 rounded-2xl bg-zinc-900 hover:bg-zinc-800 transition reveal">
-        <h3 class="font-semibold">Adam Chládek</h3>
-        <a href="https://www.instagram.com/adam_chladek_/" target="_blank" class="text-pink-400 hover:text-pink-300 transition">Instagram</a>
-      </div>
-
-      <div class="p-5 rounded-2xl bg-zinc-900 hover:bg-zinc-800 transition reveal">
-        <h3 class="font-semibold">Šimon Chládek</h3>
-        <a href="https://www.instagram.com/simon.chladek/" target="_blank" class="text-pink-400 hover:text-pink-300 transition">Instagram</a>
-      </div>
-
-      <div class="p-5 rounded-2xl bg-zinc-900 hover:bg-zinc-800 transition reveal">
-        <h3 class="font-semibold">Pavel Jablonský</h3>
-        <a href="https://www.instagram.com/jablonsky.pavel/" target="_blank" class="text-pink-400 hover:text-pink-300 transition">Instagram</a>
-      </div>
-
-      <div class="p-5 rounded-2xl bg-zinc-900 hover:bg-zinc-800 transition reveal">
-        <h3 class="font-semibold">Mariana Jančarová</h3>
-        <a href="https://www.instagram.com/jancarovamariana/" target="_blank" class="text-pink-400 hover:text-pink-300 transition">Instagram</a>
-      </div>
-
-      <div class="p-5 rounded-2xl bg-zinc-900 hover:bg-zinc-800 transition reveal">
-        <h3 class="font-semibold">Tom Janke</h3>
-        <a href="https://www.instagram.com/tom_.kajdajk/" target="_blank" class="text-pink-400 hover:text-pink-300 transition">Instagram</a>
-      </div>
-
-      <div class="p-5 rounded-2xl bg-zinc-900 hover:bg-zinc-800 transition reveal">
-        <h3 class="font-semibold">Matyáš Javůrek</h3>
-        <a href="https://www.instagram.com/maty_maple/" target="_blank" class="text-pink-400 hover:text-pink-300 transition">Instagram</a>
-      </div>
-
-      <div class="p-5 rounded-2xl bg-zinc-900 hover:bg-zinc-800 transition reveal">
-        <h3 class="font-semibold">Tomáš Javůrek</h3>
-        <a href="https://www.instagram.com/tomisk0_/" target="_blank" class="text-pink-400 hover:text-pink-300 transition">Instagram</a>
-      </div>
-
-      <div class="p-5 rounded-2xl bg-zinc-900 hover:bg-zinc-800 transition reveal">
-        <h3 class="font-semibold">Oskar Kubíček</h3>
-        <a href="https://www.instagram.com/everydayoskar/" target="_blank" class="text-pink-400 hover:text-pink-300 transition"">Instagram</a><br>
-        <a href="https://www.instagram.com/predseda.kubicek/" target="_blank" class="text-pink-400 hover:text-pink-300 transition"">Předseda IG</a>
-      </div>
-
-      <div class="p-5 rounded-2xl bg-zinc-900 hover:bg-zinc-800 transition reveal">
-        <h3 class="font-semibold">Matěj Kýhos</h3>
-        <a href="https://www.instagram.com/mattyseg/" target="_blank" class="text-pink-400 hover:text-pink-300 transition">Instagram</a>
-      </div>
-
-      <div class="p-5 rounded-2xl bg-zinc-900 hover:bg-zinc-800 transition reveal">
-        <h3 class="font-semibold">Nika Lichterman</h3>
-        <a href="https://www.instagram.com/mm00__3/" target="_blank" class="text-pink-400 hover:text-pink-300 transition">Instagram</a>
-      </div>
-
-      <div class="p-5 rounded-2xl bg-zinc-900 hover:bg-zinc-800 transition reveal">
-        <h3 class="font-semibold">Ema Mína Mátlová</h3>
-        <a href="https://www.instagram.com/emqwx.x/" target="_blank" class="text-pink-400 hover:text-pink-300 transition">Instagram</a>
-      </div>
-
-      <div class="p-5 rounded-2xl bg-zinc-900 hover:bg-zinc-800 transition reveal">
-        <h3 class="font-semibold">Maksym Molodyrenko</h3>
-        <a href="https://www.instagram.com/aymaksymsm69/" target="_blank" class="text-pink-400 hover:text-pink-300 transition">Instagram</a>
-      </div>
-
-      <div class="p-5 rounded-2xl bg-zinc-900 hover:bg-zinc-800 transition reveal">
-        <h3 class="font-semibold">Aya Nafati</h3>
-        <a href="https://www.instagram.com/_ayanafati/" target="_blank" class="text-pink-400 hover:text-pink-300 transition">Instagram</a>
-      </div>
-
-      <div class="p-5 rounded-2xl bg-zinc-900 hover:bg-zinc-800 transition reveal">
-        <h3 class="font-semibold">Bohdan Priadko</h3>
-      </div>
-
-      <div class="p-5 rounded-2xl bg-zinc-900 hover:bg-zinc-800 transition reveal">
-        <h3 class="font-semibold">Tetiana Shtoda</h3>
-      </div>
-
-      <div class="p-5 rounded-2xl bg-zinc-900 hover:bg-zinc-800 transition reveal">
-        <h3 class="font-semibold">Emílie Šantúrová</h3>
-        <a href="https://www.instagram.com/em1lqx/" target="_blank" class="text-pink-400 hover:text-pink-300 transition">Instagram</a>
-      </div>
-
-      <div class="p-5 rounded-2xl bg-zinc-900 hover:bg-zinc-800 transition reveal">
-        <h3 class="font-semibold">Elisabeth Lindsey Textorová</h3>
-      </div>
-
-      <div class="p-5 rounded-2xl bg-zinc-900 hover:bg-zinc-800 transition reveal">
-        <h3 class="font-semibold">Barbora Voláková</h3>
-        <a href="https://www.instagram.com/volakova_.b/" target="_blank" class="text-pink-400 hover:text-pink-300 transition">Instagram</a>
-      </div>
-
-      <div class="p-5 rounded-2xl bg-zinc-900 hover:bg-zinc-800 transition reveal">
-        <h3 class="font-semibold">Rozálie Zemánková</h3>
-        <a href="https://www.instagram.com/zemankova.r/" target="_blank" class="text-pink-400 hover:text-pink-300 transition">Instagram</a>
-      </div>
-
-      <div class="p-5 rounded-2xl bg-zinc-900 hover:bg-zinc-800 transition reveal">
-        <h3 class="font-semibold">Albert Zůbek</h3>
-        <a href="https://www.instagram.com/albertzubek/" target="_blank" class="text-pink-400 hover:text-pink-300 transition">Instagram</a>
-      </div>
-
+      <footer class="lightbox-footer">
+        <div class="lightbox-thumbnails" aria-label="Výběr fotografie"><button class="lightbox-thumb" type="button" data-index="0" aria-label="Zobrazit fotografii 1 z 6" aria-pressed="false"><img src="images/1.jpg" width="64" height="48" alt="" loading="lazy" decoding="async"></button>
+<button class="lightbox-thumb" type="button" data-index="1" aria-label="Zobrazit fotografii 2 z 6" aria-pressed="false"><img src="images/2.jpg" width="64" height="48" alt="" loading="lazy" decoding="async"></button>
+<button class="lightbox-thumb" type="button" data-index="2" aria-label="Zobrazit fotografii 3 z 6" aria-pressed="false"><img src="images/3.jpg" width="64" height="48" alt="" loading="lazy" decoding="async"></button>
+<button class="lightbox-thumb" type="button" data-index="3" aria-label="Zobrazit fotografii 4 z 6" aria-pressed="false"><img src="images/4.jpg" width="64" height="48" alt="" loading="lazy" decoding="async"></button>
+<button class="lightbox-thumb" type="button" data-index="4" aria-label="Zobrazit fotografii 5 z 6" aria-pressed="false"><img src="images/5.jpg" width="64" height="48" alt="" loading="lazy" decoding="async"></button>
+<button class="lightbox-thumb" type="button" data-index="5" aria-label="Zobrazit fotografii 6 z 6" aria-pressed="false"><img src="images/6.jpg" width="64" height="48" alt="" loading="lazy" decoding="async"></button></div>
+        <p id="lightbox-help">Listujte šipkami ← →. Zavřete klávesou Esc.</p>
+      </footer>
     </div>
-
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="py-10 text-center text-zinc-500 border-t border-white/10">
-
-  <p class="mb-6 text-zinc-400">
-    © 2026 ZŠ Korunovační – závěrečný projekt 9. třídy
-  </p>
-
-  <div class="flex justify-center items-center gap-8">
-
-    <!-- WEB -->
-    <a href="https://www.korunka.org/"
-       target="_blank"
-       class="hover:text-blue-400 transition"
-       title="Oficiální web školy">
-
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
-           viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M3 12h18M12 3c3 4 3 14 0 18M12 3c-3 4-3 14 0 18"/>
-      </svg>
-
-    </a>
-
-    <!-- INSTAGRAM -->
-    <a href="https://www.instagram.com/zskorunovacni_official/"
-       target="_blank"
-       class="hover:text-pink-400 transition"
-       title="Instagram školy">
-
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
-           viewBox="0 0 24 24" stroke="currentColor">
-        <rect x="3" y="3" width="18" height="18" rx="5" ry="5"
-              stroke-width="2"/>
-        <circle cx="12" cy="12" r="4" stroke-width="2"/>
-        <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/>
-      </svg>
-
-    </a>
-
-    <!-- YOUTUBE -->
-    <a href="https://www.youtube.com/@zskorunovacni.official"
-       target="_blank"
-       class="hover:text-red-400 transition"
-       title="YouTube školy">
-
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor"
-           viewBox="0 0 24 24">
-        <path d="M23 12s0-3.6-.5-5.3a3 3 0 00-2.1-2.1C18.7 4 12 4 12 4s-6.7 0-8.4.6A3 3 0 001.5 6.7C1 8.4 1 12 1 12s0 3.6.5 5.3a3 3 0 002.1 2.1C5.3 20 12 20 12 20s6.7 0 8.4-.6a3 3 0 002.1-2.1C23 15.6 23 12 23 12zM10 15V9l6 3-6 3z"/>
-      </svg>
-
-    </a>
-
-  </div>
-
-  <p class="mt-6 text-xs text-zinc-600">
-    Web byl vytvořen s pomocí AI.
-  </p>
-
-</footer>
-
-<!-- ANIMACE -->
-<script>
-  const elements = document.querySelectorAll('.reveal');
-
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('show');
-      }
-    });
-  }, {
-    threshold: 0.1
-  });
-
-  elements.forEach(el => observer.observe(el));
-</script>
-  
-<!-- LIGHTBOX -->
-<div id="lightbox"
-     class="fixed inset-0 bg-black/90 hidden items-center justify-center z-50"
-     onclick="closeLightbox()">
-
-  <img id="lightbox-img"
-       class="max-w-[90%] max-h-[90%] rounded-xl shadow-2xl">
-
-</div>
-    <script>
-  function openLightbox(src) {
-    const box = document.getElementById("lightbox");
-    const img = document.getElementById("lightbox-img");
-
-    img.src = src;
-    box.classList.remove("hidden");
-    box.classList.add("flex");
-  }
-
-  function closeLightbox() {
-    const box = document.getElementById("lightbox");
-
-    box.classList.add("hidden");
-    box.classList.remove("flex");
-  }
-</script>
-  
+  </dialog>
 </body>
 </html>
